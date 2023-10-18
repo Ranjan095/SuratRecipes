@@ -1,11 +1,23 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import SuratRecipes from "../../assets/images/SuratRecipes.png";
 
+let obj = {
+  email: "",
+  password: "",
+};
+
 function Login() {
+  let [formData, setFormData] = useState(obj);
+  let [showPassword, setShowPassword] = useState(false);
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    setFormData(obj);
+  };
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -26,11 +38,11 @@ function Login() {
               Create a free account
             </Link>
           </p>
-          <form action="#" method="POST" className="mt-8">
+          <form onSubmit={handleSubmit} className="mt-8">
             <div className="space-y-5">
               <div>
                 <label
-                  htmlFor=""
+                  htmlFor="email"
                   className="text-base font-medium text-gray-900"
                 >
                   {" "}
@@ -38,41 +50,64 @@ function Login() {
                 </label>
                 <div className="mt-2">
                   <input
+                    required
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    autoComplete="true"
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="email"
                     placeholder="Email"
+                    id="email"
                   ></input>
                 </div>
               </div>
               <div>
                 <div className="flex items-center justify-between">
                   <label
-                    htmlFor=""
+                    htmlFor="password"
                     className="text-base font-medium text-gray-900"
                   >
                     {" "}
                     Password{" "}
                   </label>
-                  <Link
+                  {/* <Link
                     href="#"
                     title=""
                     className="text-sm font-semibold text-black hover:underline"
                   >
                     {" "}
                     Forgot password?{" "}
-                  </Link>
+                  </Link> */}
+
+                  <label className=" font-normal">
+                    <input
+                      id="showPasword"
+                      type="checkbox"
+                      onChange={() => setShowPassword(!showPassword)}
+                    />{" "}
+                    {`${showPassword ? "hide password" : "show password"}`}
+                  </label>
                 </div>
                 <div className="mt-2">
                   <input
+                    required
+                    value={formData.password}
+                    onChange={(e) =>
+                      setFormData({ ...formData, password: e.target.value })
+                    }
+                    autoComplete="true"
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                    type="password"
+                    type={`${showPassword ? "text" : "password"}`}
                     placeholder="Password"
+                    id="password"
                   ></input>
                 </div>
               </div>
               <div>
                 <button
-                  type="button"
+                  type="submit"
                   className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                 >
                   Get started <ArrowRight className="ml-2" size={16} />

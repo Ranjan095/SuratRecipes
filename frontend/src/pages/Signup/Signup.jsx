@@ -1,18 +1,33 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import SuratRecipes from "../../assets/images/SuratRecipes.png";
 
+let obj = {
+  fName: "",
+  lName: "",
+  email: "",
+  password: "",
+};
+
 function Signup() {
+  let [showPassword, setShowPassword] = useState(false);
+  let [formData, setFormData] = useState(obj);
+
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    setFormData(obj);
+  };
+
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
         <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
           <div className=" flex justify-center">
             <img className=" w-20 h-20 md:w-32 md:h-32" src={SuratRecipes} />
-           
           </div>
           <h2 className="text-center text-2xl font-bold leading-tight text-black">
             Sign up to create account
@@ -27,11 +42,11 @@ function Signup() {
               Sign In
             </Link>
           </p>
-          <form action="#" method="POST" className="mt-8">
+          <form onSubmit={handleSubmit} className="mt-8">
             <div className="space-y-5">
               <div>
                 <label
-                  htmlFor="first-name"
+                  htmlFor="firstName"
                   className="text-base font-medium text-gray-900"
                 >
                   {" "}
@@ -39,6 +54,12 @@ function Signup() {
                 </label>
                 <div className="mt-2">
                   <input
+                    required
+                    value={formData.fName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, fName: e.target.value })
+                    }
+                    autoComplete="true"
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="text"
                     placeholder="First Name"
@@ -48,7 +69,7 @@ function Signup() {
               </div>
               <div>
                 <label
-                  htmlFor="last-name"
+                  htmlFor="lastName"
                   className="text-base font-medium text-gray-900"
                 >
                   {" "}
@@ -56,6 +77,12 @@ function Signup() {
                 </label>
                 <div className="mt-2">
                   <input
+                    required
+                    value={formData.lName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, lName: e.target.value })
+                    }
+                    autoComplete="true"
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="text"
                     placeholder="Last Name"
@@ -73,6 +100,12 @@ function Signup() {
                 </label>
                 <div className="mt-2">
                   <input
+                    required
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    autoComplete="true"
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="email"
                     placeholder="Email"
@@ -89,11 +122,25 @@ function Signup() {
                     {" "}
                     Password{" "}
                   </label>
+                  <label className=" font-normal">
+                    <input
+                      id="showPassword"
+                      type="checkbox"
+                      onChange={() => setShowPassword(!showPassword)}
+                    />{" "}
+                    {`${showPassword ? "hide password" : "show password"}`}
+                  </label>
                 </div>
                 <div className="mt-2">
                   <input
+                    required
+                    value={formData.password}
+                    onChange={(e) =>
+                      setFormData({ ...formData, password: e.target.value })
+                    }
+                    autoComplete="true"
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                    type="password"
+                    type={`${showPassword ? "text" : "password"}`}
                     placeholder="Password"
                     id="password"
                   ></input>
@@ -101,7 +148,7 @@ function Signup() {
               </div>
               <div>
                 <button
-                  type="button"
+                  type="submit"
                   className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                 >
                   Create Account <ArrowRight className="ml-2" size={16} />
