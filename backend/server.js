@@ -1,16 +1,18 @@
 /** @format */
 
 require("dotenv").config();
+var cors = require("cors");
 const express = require("express");
 const connection = require("./db");
 const { userRoute } = require("./routes/userRoute");
 const { recipeRoute } = require("./routes/recipeRoute");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 let app = express();
+app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRoute);
-app.use("/recipes",recipeRoute)
+app.use("/recipes", recipeRoute);
 
 const port = process.env.PORT || 8080;
 

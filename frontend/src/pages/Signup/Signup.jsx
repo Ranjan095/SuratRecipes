@@ -18,6 +18,7 @@ function Signup() {
 
   let handleSubmit = (e) => {
     e.preventDefault();
+    
     console.log(formData);
     setFormData(obj);
   };
