@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import SuratRecipes from "../../assets/images/SuratRecipes.png";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../Redux/slices/userSlice";
 
 let obj = {
   email: "",
@@ -13,10 +15,21 @@ let obj = {
 function Login() {
   let [formData, setFormData] = useState(obj);
   let [showPassword, setShowPassword] = useState(false);
+  let dispatch = useDispatch();
+
+  let { isLoading, isError } = useSelector((store) => store.user);
+
+  let handleGoogleLogin = () => {
+    console.log("google login");
+  };
+
   let handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    setFormData(obj);
+    dispatch(loginUser(formData)).then(() => {
+      setFormData(obj);
+    });
+
+    // console.log(formData);
   };
   return (
     <section>
@@ -107,16 +120,19 @@ function Login() {
               </div>
               <div>
                 <button
+                  disabled={isLoading ? true : false}
                   type="submit"
-                  className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                  className={`inline-flex w-full disabled:cursor-not-allowed items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80`}
                 >
-                  Get started <ArrowRight className="ml-2" size={16} />
+                  {`${isLoading ? "Loading..." : "Get started"}`}{" "}
+                  <ArrowRight className="ml-2" size={16} />
                 </button>
               </div>
             </div>
           </form>
           <div className="mt-3 space-y-3">
             <button
+              onClick={handleGoogleLogin}
               type="button"
               className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
             >

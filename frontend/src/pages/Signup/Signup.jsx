@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import SuratRecipes from "../../assets/images/SuratRecipes.png";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpUser } from "../../Redux/slices/userSlice";
 
 let obj = {
   fName: "",
@@ -16,11 +18,16 @@ function Signup() {
   let [showPassword, setShowPassword] = useState(false);
   let [formData, setFormData] = useState(obj);
 
+  let dispatch = useDispatch();
+
+  let { isLoading, isError } = useSelector((store) => store.user);
+
   let handleSubmit = (e) => {
     e.preventDefault();
-    
-    console.log(formData);
-    setFormData(obj);
+    dispatch(signUpUser(formData)).then(() => {
+      setFormData(obj);
+    });
+    // console.log(formData);
   };
 
   return (
@@ -149,10 +156,12 @@ function Signup() {
               </div>
               <div>
                 <button
+                  disabled={isLoading ? true : false}
                   type="submit"
-                  className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                  className="inline-flex w-full items-center disabled:cursor-not-allowed justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                 >
-                  Create Account <ArrowRight className="ml-2" size={16} />
+                  {`${isLoading ? "Loading..." : " Create Account"}`}{" "}
+                  <ArrowRight className="ml-2" size={16} />
                 </button>
               </div>
             </div>
