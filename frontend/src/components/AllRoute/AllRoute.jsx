@@ -8,6 +8,7 @@ import Login from "../../pages/Login/Login";
 import Signup from "../../pages/Signup/Signup";
 import About from "../../pages/About/About";
 import Contact from "../../pages/Contact/Contact";
+import ProductDetails from "../../pages/ProductDetails/ProductDetails";
 
 const AllRoute = () => {
   return (
@@ -19,6 +20,7 @@ const AllRoute = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipes/:id" element={<ProductDetails />}></Route>
       </Routes>
     </div>
   );

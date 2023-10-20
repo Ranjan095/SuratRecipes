@@ -23,9 +23,7 @@ export let loginUser = createAsyncThunk("loginUser", async (data) => {
     let res = await axios.post(`${baseURL}/user/login`, data);
     // console.log(res);
     TOAST_SUCCESS(`login successful!`);
-    // console.log("JWT Token:", res.data.token);
-    // sessionStorage.setItem("token", res.data?.token || "");
-    // setToken(res.data?.token);
+
     return res.data;
   } catch (error) {
     // console.lo(error.response.data.message);
