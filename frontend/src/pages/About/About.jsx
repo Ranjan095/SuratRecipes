@@ -1,9 +1,17 @@
-import React from 'react'
+/** @format */
+
+import React, { useState } from "react";
+import Modal from "../../components/modal/Modal";
 
 const About = () => {
+  
   return (
-    <div className=' h-screen'>About</div>
-  )
-}
+    <div className=" h-screen">
+      <div>About</div>
 
-export default About
+    
+    </div>
+  );
+};
+
+export default About;

@@ -1,6 +1,7 @@
 /** @format */
 let bcrypt = require("bcryptjs");
-var jwt = require("jsonwebtoken");
+require("dotenv").config();
+let jwt = require("jsonwebtoken");
 const { UserModel } = require("../model/userModel");
 const { errorHandler } = require("../utils/errorHandler/errorHandler");
 /** API for Create new users **/
@@ -39,7 +40,7 @@ let getUser = async (req, res) => {
     // let user = await UserModel.findOne(req.params.user
     return res.status(200).send({ msg: "userRoute" });
   } catch (error) {
-    return errorHandler(res, error);
+    return errorHandler(res, error.message);
   }
 };
 
@@ -58,20 +59,19 @@ let loginUser = async (req, res) => {
 
     /** Create Token */
     let data = { id: user._id, name: user.fName };
-    var token = jwt.sign(data, process.env.TOKEN_SECRET);
+    let token = jwt.sign(data, process.env.TOKEN_SECRET);
 
-    res.cookie("jwtToken", token, {
-      httpOnly: true,
-      // secure: true,
-      expiresIn: "1d",
-    });
+    // await res.cookie("jwtToken", token, {
+    //   httpOnly: true,
+    // });
 
     return res.status(200).send({
       msg: "user login successfully",
       token,
+      userName: user.fName,
     });
   } catch (error) {
-    return errorHandler(res, error);
+    return errorHandler(res, error.message);
   }
 };
 
