@@ -124,7 +124,8 @@ const Home = () => {
       </div>
       <div>
         <p className=" text-2xl md:text-3xl lg:text-4xl font-bold text-center">
-          Explore our recipes collection, From savory classics to exotic flavors!
+          Explore our recipes collection, From savory classics to exotic
+          flavors!
         </p>
       </div>
 
@@ -132,8 +133,8 @@ const Home = () => {
         <Slider {...settings}>
           {arr.map((ele, i) => {
             return (
-              <Link to={"/recipes"}>
-                <div key={i} className="rounded-lg border border-solid">
+              <Link key={i} to={"/recipes"}>
+                <div className="rounded-lg border border-solid">
                   <img
                     alt="Mandir"
                     className="max-h-[200px] md:max-h-[300px] lg:max-h-[350px] object-cover"
