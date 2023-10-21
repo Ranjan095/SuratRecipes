@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight, FolderHeart } from "lucide-react";
 import { Link } from "react-router-dom";
 import SuratRecipes from "../../assets/images/SuratRecipes.png";
 import loginLogo from "../../assets/images/loginLogo.png";
@@ -18,14 +18,14 @@ const menuItems = [
     name: "Recipes",
     href: "/recipes",
   },
-  {
-    name: "About",
-    href: "/about",
-  },
-  {
-    name: "Contact",
-    href: "/contact",
-  },
+  // {
+  //   name: "About",
+  //   href: "/about",
+  // },
+  // {
+  //   name: "Contact",
+  //   href: "/contact",
+  // },
 ];
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,6 +73,16 @@ function NavBar() {
             ))}
           </ul>
         </div>
+        {token && (
+          <Link to={"/favorite"}>
+            {" "}
+            <span className=" relative top-2 right-2 block h-10 w-10 rounded-full hover:cursor-pointer bg-orange-600 ">
+              <FolderHeart
+                className={` absolute   top-2 right-2  block text-white`}
+              />
+            </span>
+          </Link>
+        )}
         {token ? (
           <div className=" hidden lg:block">
             {" "}
@@ -190,6 +200,7 @@ function NavBar() {
                 ) : (
                   <div className="mt-2 space-y-2">
                     <button
+                      onClick={toggleMenu}
                       type="button"
                       className="w-full rounded-md border border-black text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                     >
@@ -224,10 +235,6 @@ function NavBar() {
 }
 
 export default NavBar;
-
-
-
-
 
 let LogOutModal = ({ isOpen, setIsOpen }) => {
   let dispatch = useDispatch();

@@ -1,8 +1,8 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SuratRecipes from "../../assets/images/SuratRecipes.png";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../Redux/slices/userSlice";
@@ -16,8 +16,8 @@ function Login() {
   let [formData, setFormData] = useState(obj);
   let [showPassword, setShowPassword] = useState(false);
   let dispatch = useDispatch();
-
-  let { isLoading, isError } = useSelector((store) => store.user);
+  let navigate = useNavigate();
+  let { isLoading, isError, token } = useSelector((store) => store.user);
 
   let handleGoogleLogin = () => {
     console.log("google login");
@@ -31,6 +31,12 @@ function Login() {
 
     // console.log(formData);
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/recipes");
+    }
+  }, [token]);
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">

@@ -1,5 +1,5 @@
 /** @format */
-
+const { auth } = require("../middleware/authMiddleware");
 let express = require("express");
 const {
   getUser,
@@ -14,7 +14,7 @@ let userRoute = express.Router();
 userRoute.post("/create", createUser);
 
 /** for Get user */
-userRoute.get("/", getUser);
+userRoute.get("/", auth, getUser);
 
 /** for Login user */
 userRoute.post("/login", loginUser);
@@ -25,8 +25,8 @@ userRoute.get("/logout", async (req, res) => {
   try {
     res.clearCookie("jwtToken");
     return res.status(200).json({
-        message: "Logout Successfully",
-        success: true,
+      message: "Logout Successfully",
+      success: true,
     });
   } catch (error) {
     return errorHandler(error, error.message);

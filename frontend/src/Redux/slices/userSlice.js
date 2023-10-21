@@ -9,10 +9,11 @@ import { TOAST_ERROR, TOAST_SUCCESS } from "../../utils/toast";
 export let signUpUser = createAsyncThunk("signUpUser", async (data) => {
   try {
     let res = await axios.post(`${baseURL}/user/create`, data);
+    // console.log(res);
     TOAST_SUCCESS(`your account has been created!`);
     return res.data;
   } catch (error) {
-    // console.log(error.response.data.message);
+    console.log(error);
     TOAST_ERROR(error.response.data.message);
   }
 });
@@ -23,10 +24,9 @@ export let loginUser = createAsyncThunk("loginUser", async (data) => {
     let res = await axios.post(`${baseURL}/user/login`, data);
     // console.log(res);
     TOAST_SUCCESS(`login successful!`);
-
     return res.data;
   } catch (error) {
-    // console.lo(error.response.data.message);
+    console.log(error);
     TOAST_ERROR(error.response.data.message);
   }
 });

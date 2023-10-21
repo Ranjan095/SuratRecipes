@@ -37,8 +37,10 @@ let createUser = async (req, res) => {
 /** API for Get users **/
 let getUser = async (req, res) => {
   try {
-    // let user = await UserModel.findOne(req.params.user
-    return res.status(200).send({ msg: "userRoute" });
+    let { authorid } = req.body;
+    let user = await UserModel.findOne({ _id: authorid }).select("-password");
+    // console.log(req.body);
+    return res.status(200).send(user);
   } catch (error) {
     return errorHandler(res, error.message);
   }

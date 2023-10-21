@@ -9,6 +9,8 @@ import Signup from "../../pages/Signup/Signup";
 import About from "../../pages/About/About";
 import Contact from "../../pages/Contact/Contact";
 import ProductDetails from "../../pages/ProductDetails/ProductDetails";
+import FavoriteRecipes from "../../pages/Recipes/FavoriteRecipes";
+import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
 
 const AllRoute = () => {
   return (
@@ -20,6 +22,15 @@ const AllRoute = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/recipes" element={<Recipes />} />
+        <Route
+          path="/favorite"
+          element={
+            <PrivateRoute>
+              {" "}
+              <FavoriteRecipes />
+            </PrivateRoute>
+          }
+        />
         <Route path="/recipes/:id" element={<ProductDetails />}></Route>
       </Routes>
     </div>

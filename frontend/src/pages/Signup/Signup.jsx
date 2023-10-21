@@ -1,8 +1,8 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SuratRecipes from "../../assets/images/SuratRecipes.png";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpUser } from "../../Redux/slices/userSlice";
@@ -19,13 +19,14 @@ function Signup() {
   let [formData, setFormData] = useState(obj);
 
   let dispatch = useDispatch();
-
-  let { isLoading, isError } = useSelector((store) => store.user);
+  let navigate = useNavigate();
+  let { isLoading, isError, token } = useSelector((store) => store.user);
 
   let handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signUpUser(formData)).then(() => {
       setFormData(obj);
+      navigate("/login");
     });
     // console.log(formData);
   };
