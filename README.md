@@ -51,3 +51,5 @@ Follow these steps to set up the backend for this project:
 ### Step 3: Start the Frontend
 - `npm run dev`
 
+<img src="https://github.com/Ranjan095/SuratRecipes/blob/main/frontend/src/assets/images/fav.jpg?raw=true" alt="fav"/>
+
