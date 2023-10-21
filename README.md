@@ -69,39 +69,43 @@ Follow these steps to set up the backend for this project:
 
 Surat Recipe welcomes users with an inviting homepage, adorned with vibrant images and a user-friendly layout, setting the stage for a gastronomic adventure through Surat's culinary wonders.
 ![home1](./frontend/src/assets/images/home1.jpg)
-![home1](./frontend/src/assets/images/home2.jpg)
+![home2](./frontend/src/assets/images/home2.jpg)
 
 ### 2. Recipe Page
 
 At the heart of this project is the Recipe Page, a treasury of traditional and contemporary Surati recipes. The intuitive interface allows users to seamlessly explore the diverse culinary offerings of Surat.
 
-![home1](./frontend/src/assets/images/recipes2.jpg)
+![recipes2](./frontend/src/assets/images/recipes2.jpg)
 
 ### 3. Login & Sign-up Pages:
 
 Robust user authentication ensures that users can create accounts, enhancing their engagement and allowing them to save their favorite recipes.
 
-![home1](./frontend/src/assets/images/login.jpg)
-![home1](./frontend/src/assets/images/signup.jpg)
+![login](./frontend/src/assets/images/login.jpg)
+![signup](./frontend/src/assets/images/signup.jpg)
 
 ### 4. Favourite Recipe:
 
 Users can mark their beloved Surati recipes as favorites, simplifying their ability to revisit and share these culinary gems with others.
 
-![home1](./frontend/src/assets/images/fav.jpg)
+![favourate](./frontend/src/assets/images/fav.jpg)
 
 ### 5. Single Product Page:
 
 Each recipe is presented in detail, with step-by-step instructions, a list of ingredients, and additional insights into the rich history and cultural significance of the dish.
 
-![home1](./frontend/src/assets/images/home3.jpg)
+![producdetails](./frontend/src/assets/images/home3.jpg)
 
 ### 6. Search and Recipe Filtering:
 
 A distinctive feature of Surat Recipe, this functionality enables users to search for recipes tailored to their personal culinary preferences, making it easier to explore Surati dishes that match their tastes.
 
-![home1](./frontend/src/assets/images/search.jpg)
+![search](./frontend/src/assets/images/search.jpg)
 
 ### 7. Spoonacular API Integration:
 
 Surat Recipe stands out with its seamless integration of the Spoonacular API, a culinary data powerhouse. This integration greatly enriches the project by providing an extensive database of recipes, ingredients, and culinary insights. Through the Spoonacular API, users can explore an even wider array of Surati recipes, discover unique ingredients, and access valuable cooking tips, making Surat Recipe a comprehensive culinary resource for both novice and experienced cooks. This feature ensures that users have access to a diverse and ever-expanding collection of Surati recipes and a wealth of culinary knowledge, elevating their culinary journey on Surat Recipe.
+
+# Thanks.
+
+### I appreciate your visit to Surat Recipe. Your engagement matters. If you have any questions or feedback, please reach out. Thank you for being a part of our culinary journey!
