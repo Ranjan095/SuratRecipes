@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { ArrowDown, Loader2, X } from "lucide-react";
+import { ArrowDown, Delete, Loader2, Trash2, X } from "lucide-react";
 import axios from "axios";
 import { baseURL } from "../../assets/URL/BaseURL";
 import { useSelector } from "react-redux";
@@ -105,6 +105,7 @@ const FavoriteRecipes = () => {
                     className="flex items-stretch justify-between space-x-5 py-7"
                   >
                     <div className="flex flex-1 items-stretch">
+                    <Link to={`/recipes/${ele.id}`}>
                       <div className="flex-shrink-0">
                         <img
                           className="h-20 w-20 rounded-lg border border-gray-200 object-contain"
@@ -112,6 +113,7 @@ const FavoriteRecipes = () => {
                           alt={ele.title}
                         />
                       </div>
+                      </Link>
 
                       <div className="ml-5 flex flex-col justify-between">
                         <div className="flex-1">
@@ -127,17 +129,18 @@ const FavoriteRecipes = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="ml-auto flex flex-col items-end justify-between">
-                      <p className="text-right text-sm font-bold text-gray-900">
+                    <div className="ml-auto flex flex-col items-end justify-center">
+                      {/* <p className="text-right text-sm font-bold text-gray-900">
                         {"Remove"}
-                      </p>
+                      </p> */}
                       <button
                         onClick={() => handleDelete(ele.id)}
                         type="button"
                         className="-m-2 inline-flex rounded p-2 text-gray-400 transition-all duration-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
                       >
-                        <span className="sr-only">Remove </span>
-                        <X className="h-5 w-5" />
+                        {/* <span className="sr-only">Remove </span> */}
+                        {/* <X className="h-5 w-5" /> */}
+                        <Trash2 />
                       </button>
                     </div>
                   </li>

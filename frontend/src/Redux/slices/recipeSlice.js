@@ -22,6 +22,21 @@ export let getRecipesData = createAsyncThunk("getRecipesData", async (url) => {
 export let addFavorite = createAsyncThunk("addFavorite", async (data) => {
   try {
     // console.log(data);
+    /** check recepis already avlable */
+    let result = await axios.get(`${baseURL}/user`, {
+      headers: {
+        Authorization: `Bearer ${data.token}`,
+      },
+    });
+    let ids = result.data.favRecipes.join();
+    // console.log(ids);
+
+    if (ids.includes(data.productId)) {
+      TOAST_ERROR("already added to your favorites list");
+      return;
+    }
+
+    /** if not already present then added */
     let res = await axios.post(
       `${baseURL}/recipes/addFavorite`,
       { productId: data.productId },
